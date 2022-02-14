@@ -3,7 +3,7 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=128)
-    imgpath = models.CharField(max_length=128)
+    imgpath = models.ImageField(blank=True)
 
     def __str__(self):
         return self.name

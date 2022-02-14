@@ -11,5 +11,4 @@ urlpatterns = [
     path('branches/<int:pk>/', BranchDetail.as_view(), name='branch_detail'),
     path('categories/', CategoryList.as_view(), name='category_list'),
     path('categories/<int:pk>/', CategoryDetail.as_view(), name='category_detail'),
-
 ]
