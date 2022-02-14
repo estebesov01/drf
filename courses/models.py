@@ -38,8 +38,8 @@ class Course(models.Model):
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     logo = models.ImageField(blank=True)
-    contacts = models.ForeignKey(Contact, on_delete=models.CASCADE)
-    branches = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    contacts = models.ManyToManyField(Contact)
+    branches = models.ManyToManyField(Branch)
 
     def __str__(self):
         return self.name

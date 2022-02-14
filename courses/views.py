@@ -31,26 +31,26 @@ class CourseDetail(ObjectDetail, APIView):
 
 class ContactList(ObjectList, APIView):
     model = Contact
-    class_serializer = ContactSerializer
-    serializer_class = ContactSerializer
+    class_serializer = ContactListDetailSerializer
+    serializer_class = ContactListDetailSerializer
 
 
 class ContactDetail(ObjectDetail, APIView):
     model = Contact
-    class_serializer = ContactSerializer
-    serializer_class = ContactSerializer
+    class_serializer = ContactListDetailSerializer
+    serializer_class = ContactListDetailSerializer
 
 
 class BranchList(ObjectList, APIView):
     model = Branch
-    class_serializer = BranchSerializer
-    serializer_class = BranchSerializer
+    class_serializer = BranchListDetailSerializer
+    serializer_class = BranchListDetailSerializer
 
 
 class BranchDetail(ObjectDetail, APIView):
     model = Branch
-    class_serializer = BranchSerializer
-    serializer_class = BranchSerializer
+    class_serializer = BranchListDetailSerializer
+    serializer_class = BranchListDetailSerializer
 
 
 class CategoryList(ObjectList, APIView):
@@ -59,7 +59,7 @@ class CategoryList(ObjectList, APIView):
     serializer_class = CategorySerializer
 
 
-class CategoryDetail(ObjectList, APIView):
+class CategoryDetail(ObjectDetail, APIView):
     model = Category
     class_serializer = CategorySerializer
     serializer_class = CategorySerializer

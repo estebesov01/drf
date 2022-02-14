@@ -36,14 +36,6 @@ class ObjectDetail:
         serializer = self.class_serializer(obj)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        obj = self.get_object(pk)
-        serializer = self.class_serializer(obj, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def delete(self, request, pk):
         obj = self.get_object(pk)
         obj.delete()
