@@ -4,16 +4,16 @@ from rest_framework.relations import PrimaryKeyRelatedField
 from .models import *
 
 
-class ContactSerializer(PrimaryKeyRelatedField, serializers.ModelSerializer):
+class ContactCreateSerializer(PrimaryKeyRelatedField, serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = ['id', 'type', 'value']
 
 
-class ContactListDetailSerializer(serializers.ModelSerializer):
+class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = ['id', 'type', 'value']
+        fields = '__all__'
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -22,13 +22,13 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'imgpath']
 
 
-class BranchSerializer(PrimaryKeyRelatedField, serializers.ModelSerializer):
+class BranchCreateSerializer(PrimaryKeyRelatedField, serializers.ModelSerializer):
     class Meta:
         model = Branch
         fields = ['id', 'latitude', 'longitude', 'address']
 
 
-class BranchListDetailSerializer(serializers.ModelSerializer):
+class BranchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Branch
         fields = ['id', 'latitude', 'longitude', 'address']
@@ -36,10 +36,20 @@ class BranchListDetailSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
-    contacts = ContactSerializer(many=True, queryset=Contact.objects.all())
-    branches = BranchSerializer(many=True, queryset=Branch.objects.all())
+    contacts = ContactCreateSerializer(many=True, queryset=Contact.objects.all())
+    branches = BranchCreateSerializer(many=True, queryset=Branch.objects.all())
 
     class Meta:
         model = Course
-        fields = ['id', 'name', 'description', 'category',
-                  'logo', 'contacts', 'branches']
+        fields = ['id', 'name', 'description',
+                  'logo', 'contacts', 'branches', 'category', ]
+
+
+class CourseDetailSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+    contacts = ContactSerializer(many=True, read_only=True)
+    branches = BranchSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Course
+        fields = '__all__'

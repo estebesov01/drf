@@ -1,3 +1,4 @@
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -20,37 +21,44 @@ def api_root(request, format=None):
 class CourseList(ObjectList, APIView):
     model = Course
     serializer_class = CourseSerializer
-    class_serializer = CourseSerializer
+    class_serializer = CourseDetailSerializer
+
+    def post(self, request, format=None):
+        serializer = CourseSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CourseDetail(ObjectDetail, APIView):
     model = Course
-    serializer_class = CourseSerializer
-    class_serializer = CourseSerializer
+    serializer_class = CourseDetailSerializer
+    class_serializer = CourseDetailSerializer
 
 
 class ContactList(ObjectList, APIView):
     model = Contact
-    class_serializer = ContactListDetailSerializer
-    serializer_class = ContactListDetailSerializer
+    class_serializer = ContactSerializer
+    serializer_class = ContactSerializer
 
 
 class ContactDetail(ObjectDetail, APIView):
     model = Contact
-    class_serializer = ContactListDetailSerializer
-    serializer_class = ContactListDetailSerializer
+    class_serializer = ContactSerializer
+    serializer_class = ContactSerializer
 
 
 class BranchList(ObjectList, APIView):
     model = Branch
-    class_serializer = BranchListDetailSerializer
-    serializer_class = BranchListDetailSerializer
+    class_serializer = BranchSerializer
+    serializer_class = BranchSerializer
 
 
 class BranchDetail(ObjectDetail, APIView):
     model = Branch
-    class_serializer = BranchListDetailSerializer
-    serializer_class = BranchListDetailSerializer
+    class_serializer = BranchSerializer
+    serializer_class = BranchSerializer
 
 
 class CategoryList(ObjectList, APIView):
