@@ -21,8 +21,8 @@ Well, at the beginning you need to migrate your models and then you need to crea
 you can use "shell". And after migration you just need to run server
 
 ```
+python manage.py makemigrations
 python manage.py migrate
-python manage.py makemigration
 python manage.py createsuperuser
 python manage.py runserver
 ```
