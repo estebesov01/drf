@@ -1,0 +1,1 @@
+web: gunicorn course_app.wsgi --log-file -
