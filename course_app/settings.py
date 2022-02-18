@@ -126,7 +126,7 @@ STATIC_URL = '/static/'
 # location where django collect all static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # location where you will store your static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'course_app/static')]
 
 import dj_database_url
 
