@@ -11,10 +11,10 @@ from .serializers import *
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'courses': reverse('course_list', request=request, format=format),
-        'contacts': reverse('contact_list', request=request, format=format),
-        'branches': reverse('branch_list', request=request, format=format),
-        'categories': reverse('category_list', request=request, format=format)
+        'courses': reverse('courses:course_list', request=request, format=format),
+        'contacts': reverse('courses:contact_list', request=request, format=format),
+        'branches': reverse('courses:branch_list', request=request, format=format),
+        'categories': reverse('courses:category_list', request=request, format=format)
     })
 
 

@@ -19,7 +19,7 @@ from .yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('courses.urls')),
+    path('', include('courses.urls', namespace='courses')),
 ]
 
 urlpatterns += doc_urls

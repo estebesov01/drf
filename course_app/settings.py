@@ -126,7 +126,7 @@ STATIC_URL = '/static/'
 # location where django collect all static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # location where you will store your static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'course_app/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 import dj_database_url
 
@@ -137,3 +137,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
